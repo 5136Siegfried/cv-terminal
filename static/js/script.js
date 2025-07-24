@@ -1,6 +1,19 @@
 // Charger les sons
 const typeSound = new Audio("static/sounds/type.mp3");
 typeSound.volume = 0.3;
+const bootSound = new Audio("static/sounds/boot.wav");
+bootSound.volume = 0.6;
+bootSound.play();
+
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const boot = document.getElementById("boot-screen");
+    boot.style.transition = "opacity 1s ease-out";
+    boot.style.opacity = 0;
+    setTimeout(() => boot.remove(), 1000);
+  }, 4000); // durée du boot screen en ms
+});
 
 
 document.addEventListener("DOMContentLoaded", () => {
