@@ -1,39 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Terminal - Siegfried Sekkai</title>
-  <link rel="stylesheet" href="static/style.css">
+  <title>Terminal Portfolio – Siegfried</title>
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-      <div id="boot-screen">
-      <pre>
-    PhoenixBIOS 4.0 Release 6.0
-    Copyright 1985-1988 Phoenix Technologies Ltd.
-    All Rights Reserved
+  <div id="boot-screen">
+  <pre>
+PhoenixBIOS 4.0 Release 6.0
+Copyright 1985-1988 Phoenix Technologies Ltd.
+All Rights Reserved
 
-    Detecting Primary Master ... OK
-    Detecting Primary Slave  ... None
-    Detecting Secondary Master ... OK
-    Detecting Secondary Slave  ... None
+Detecting Primary Master     ... OK
+Detecting Primary Slave      ... None
+Detecting Secondary Master   ... OK
+Detecting Secondary Slave    ... None
 
-    Mouse initialized
-    Keyboard detected
+Mouse initialized
+Keyboard detected
 
-    Booting from SiegfriedSekkaIOS...
-    Press F1 to Resume
-      </pre>
-    </div>
+Booting from SiegfriedSekkaIOS...
+Press F1 to Resume
+  </pre>
+</div>
+
   <div id="terminal">
-    <div id="output">
-      <p>Bienvenue sur le terminal de Siegfried Sekkai.<br> Tapez <code>help</code> pour voir les commandes disponibles.</p>
+    <div class="terminal-line">Bienvenue sur le terminal de Siegfried.</div>
+    <div id="input-line">
+      <span class="prompt">></span>
+      <input id="terminal-input" autofocus autocomplete="off" />
     </div>
-    <form id="command-form">
-      <span class="prompt">&gt;</span>
-      <input type="text" id="command-input" autocomplete="off" autofocus />
-    </form>
   </div>
-  <script src="static/js/script.js"></script>
+  <script type="module" src="static/js/main.js"></script>
 </body>
 </html>
