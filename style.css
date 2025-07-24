@@ -1,0 +1,56 @@
+/* Terminal-style layout */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0d0d0d;
+  color: #33ff33;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#terminal {
+  padding: 1em;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  flex: 1;
+}
+
+/* Command line input */
+#input-line {
+  display: flex;
+  align-items: center;
+}
+
+#input-line::before {
+  content: "$ ";
+  margin-right: 0.4em;
+  color: #33ff33;
+}
+
+#terminal-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #33ff33;
+  font-family: inherit;
+  font-size: inherit;
+  flex: 1;
+}
+
+/* Previous command lines */
+.terminal-line {
+  margin-bottom: 0.3em;
+}
+
+/* Scrollbar styling (optional, for webkit browsers) */
+#terminal::-webkit-scrollbar {
+  width: 6px;
+}
+#terminal::-webkit-scrollbar-thumb {
+  background: #33ff33;
+  border-radius: 3px;
+}

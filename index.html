@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Siegfried Sekkai - Portfolio Terminal</title>
+  <title>CV Terminal - Siegfried Sekkai</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="terminal">
-    <div id="output"></div>
-    <div class="prompt">
-      <span class="prompt-label">&gt;</span>
-      <input type="text" id="commandInput" autofocus autocomplete="off" />
+    <div id="output">
+      <p>Bienvenue sur le terminal de Siegfried Sekkai.<br> Tapez <code>help</code> pour voir les commandes disponibles.</p>
     </div>
+    <form id="command-form">
+      <span class="prompt">&gt;</span>
+      <input type="text" id="command-input" autocomplete="off" autofocus />
+    </form>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
