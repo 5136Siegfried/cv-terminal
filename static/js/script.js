@@ -1,36 +1,36 @@
 // Charger les sons
 const typeSound = new Audio("static/sounds/type.mp3");
 typeSound.volume = 0.3;
+
 const bootSound = new Audio("static/sounds/boot.wav");
 bootSound.volume = 0.6;
 bootSound.play();
 
-
+// Boot screen
 window.addEventListener("load", () => {
   setTimeout(() => {
     const boot = document.getElementById("boot-screen");
     boot.style.transition = "opacity 1s ease-out";
     boot.style.opacity = 0;
     setTimeout(() => boot.remove(), 1000);
-  }, 4000); // durée du boot screen en ms
+  }, 4000);
 });
 
-
+// Terminal
 document.addEventListener("DOMContentLoaded", () => {
   const terminal = document.getElementById("terminal");
   const inputLine = document.getElementById("input-line");
-  const input = document.getElementById("terminal-input");
+  const terminalInput = document.getElementById("terminal-input");
 
   const commands = {
     help: () => {
-      return `
-Commandes disponibles :
-- help       → Affiche cette aide
-- cv         → Affiche le CV de Siegfried Sekkai
-- projects   → Liste des projets GitHub
-- contact    → Infos de contact
-- clear      → Efface l'écran
-      `.trim();
+      return `Commandes disponibles :
+  - help     : affiche cette aide
+  - about    : à propos de moi
+  - projects : liste mes projets
+  - cv       : mon CV résumé
+  - contact  : infos de contact
+  - clear    : efface l'écran`;
     },
 
     cv: () => {
@@ -41,8 +41,7 @@ Skills : AWS, GCP, Terraform, K8s, Docker, Ansible, Python, Go, GitHub Actions
 Expérience : Scalephive, Deloitte, CSOR
 Projet notable : JobTracker, Infra-SRE-Good-Practices
 
-Tapez 'projects' pour en voir plus.
-      `.trim();
+Tapez 'projects' pour en voir plus.`.trim();
     },
 
     projects: () => {
@@ -51,16 +50,14 @@ Projets GitHub :
 - JobTracker       → Suivi de candidatures (Flask + Chart.js)
 - Good Practices   → Guide DevOps & SRE
 - TerminalCV       → Ce terminal comme portfolio
-Lien : https://github.com/5136Siegfried
-      `.trim();
+Lien : https://github.com/5136Siegfried`.trim();
     },
 
     contact: () => {
       return `
 📧 siegfried.sekkai@gmail.com
 🔗 https://linkedin.com/in/siegfried-sekkai
-🐙 https://github.com/5136Siegfried
-      `.trim();
+🐙 https://github.com/5136Siegfried`.trim();
     },
 
     clear: () => {
@@ -70,7 +67,7 @@ Lien : https://github.com/5136Siegfried
     }
   };
 
-  function printOutput(text) {
+  function appendOutput(text) {
     const line = document.createElement("div");
     line.className = "terminal-line";
     line.innerText = text;
@@ -78,28 +75,31 @@ Lien : https://github.com/5136Siegfried
     terminal.scrollTop = terminal.scrollHeight;
   }
 
-  input.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      const command = input.value.trim();
-      if (command === "") return;
+  function processCommand(input) {
+    const command = input.trim().toLowerCase();
+    const action = commands[command];
+    if (action) {
+      return typeof action === 'function' ? action() : action;
+    } else {
+      return `Commande inconnue : ${command}`;
+    }
+  }
 
-      printOutput(`> ${command}`);
-      input.value = "";
+  terminalInput.addEventListener("keydown", function (e) {
+    if (e.key.length === 1) {
+      // On joue le son à chaque frappe visible
+      typeSound.currentTime = 0;
+      typeSound.play();
+    }
 
-      const action = commands[command.toLowerCase()];
-      if (action) {
-        const output = action();
-        if (output) printOutput(output);
-      } else {
-        printOutput("Commande inconnue. Tapez 'help' pour la liste.");
-      }
+    if (e.key === "Enter") {
+      const inputValue = terminalInput.value;
+      appendOutput(`> ${inputValue}`);
+      const result = processCommand(inputValue);
+      if (result) appendOutput(result);
+      terminalInput.value = "";
     }
   });
 
-  input.focus();
-});
-
-document.getElementById('terminal-input').addEventListener('keydown', () => {
-  typeSound.currentTime = 0;
-  typeSound.play();
+  terminalInput.focus();
 });
