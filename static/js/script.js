@@ -1,3 +1,8 @@
+// Charger les sons
+const typeSound = new Audio("static/sounds/type.mp3");
+typeSound.volume = 0.3;
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const terminal = document.getElementById("terminal");
   const inputLine = document.getElementById("input-line");
@@ -79,4 +84,9 @@ Lien : https://github.com/5136Siegfried
   });
 
   input.focus();
+});
+
+document.getElementById('terminal-input').addEventListener('keydown', () => {
+  typeSound.currentTime = 0;
+  typeSound.play();
 });

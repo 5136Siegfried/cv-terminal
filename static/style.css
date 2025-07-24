@@ -54,3 +54,18 @@ body {
   background: #33ff33;
   border-radius: 3px;
 }
+
+#terminal-input::after {
+  content: ' ';
+  display: inline-block;
+  width: 10px;
+  height: 1em;
+  background: #33ff33;
+  margin-left: 2px;
+  animation: blink 1s step-start infinite;
+  vertical-align: bottom;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
